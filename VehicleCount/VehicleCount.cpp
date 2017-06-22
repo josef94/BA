@@ -89,7 +89,7 @@ int main(int argc, const char* argv[]) {
 			break;
 		}
 		int number2 = getNumberFromName(filenames[iterator], iterator);
-		while (abs(number1 - number2) <= distanceThresh) {
+		while (abs(number1 - number2) <= distanceThresh && iterator < filenames.size()-2) {
 			countRelevantPictures++;
 			iterator++;
 			if (number1 < number2) {

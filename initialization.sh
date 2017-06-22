@@ -98,8 +98,9 @@ then
 
   if [ -d ~/opencv/build ]
   then
-    if [[ ! ~/opencv/build/CMakeFiles ]]
+    if [ ! -d ~/opencv/build/CMakeFiles ]
     then
+
     cd ~/opencv/build
     chmod +x buildOpenCV
     ./buildOpenCV

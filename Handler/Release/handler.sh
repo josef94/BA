@@ -18,15 +18,15 @@ duration=600	 	  #Dauer in Secunden
 end=$((SECONDS + $duration))
 
 #für Zeitsteuerung
-startTime="122800"
-endTime="132700"
+startTime="9080000"
+endTime="9200000"
 isRunningVideo=false;
 
 echo -e "$Blue Test avconv is running $OFF"
 
 while [ 1 ]
 do
-if [[ ! "$((`date +"%H%M%S"`))" < "$startTime" && ! "$((`date +"%H%M%S"`))" > "$endTime" ]]
+if [[ ! "$((`date +"9%H%M%S"`))" < "$startTime" && ! "$((`date +"9%H%M%S"`))" > "$endTime" ]]
 then
 	isRunningVideo=true;
 	if [ `pidof avconv` > "0" ]

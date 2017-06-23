@@ -168,7 +168,7 @@ then
   sudo apt-get -y -q install checkinstall
 fi
 
-if ! dpkg --get-selections | grep -q mjpg-streamer
+if ! which mjpg_streamer 2>&1 >/dev/null
 then
   echo -e "$Yellow mjpg-streamer $OFF"
   if [ ! -d ~/mjpg-streamer ]

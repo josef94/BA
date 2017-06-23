@@ -100,7 +100,6 @@ then
   then
     if [ ! -d ~/opencv/build/CMakeFiles ]
     then
-
     cd ~/opencv/build
     chmod +x buildOpenCV
     ./buildOpenCV
@@ -121,7 +120,7 @@ then
   fi
 fi
 
-############################# avconv  #############################
+############################# avconv #############################
 echo -e "$Cyan Installing Avconv... $OFF"
 if ! dpkg --get-selections | grep -q libav-tools
 then
@@ -129,7 +128,73 @@ then
   sudo apt-get -y -q install libav-tools
 fi
 
-############################# Make all  #############################
+############################# apache2 #############################
+echo -e "$Cyan Installing Apache2... $OFF"
+if ! dpkg --get-selections | grep -q apache2
+then
+  echo -e "$Yellow apache2 $OFF"
+  sudo apt-get -y -q install apache2
+fi
+
+############################# mjpg-streamer #############################
+echo -e "$Cyan Installing Mjpg-streamer... $OFF"
+if ! dpkg --get-selections | grep -q libjpeg-dev
+then
+  echo -e "$Yellow libjpeg-dev $OFF"
+  sudo apt-get -y -q install libjpeg-dev
+fi
+
+if ! dpkg --get-selections | grep -q imagemagick
+then
+  echo -e "$Yellow imagemagick $OFF"
+  sudo apt-get -y -q install imagemagick
+fi
+
+if ! dpkg --get-selections | grep -q subversion
+then
+  echo -e "$Yellow subversion $OFF"
+  sudo apt-get -y -q install subversion
+fi
+
+if ! dpkg --get-selections | grep -q libv4l-dev
+then
+  echo -e "$Yellow libv4l-dev $OFF"
+  sudo apt-get -y -q install libv4l-dev
+fi
+
+if ! dpkg --get-selections | grep -q checkinstall
+then
+  echo -e "$Yellow checkinstall $OFF"
+  sudo apt-get -y -q install checkinstall
+fi
+
+if ! dpkg --get-selections | grep -q mjpg-streamer
+then
+  echo -e "$Yellow mjpg-streamer $OFF"
+  if [ ! -d ~/mjpg-streamer ]
+  then
+    cd ~
+    svn co svn://svn.code.sf.net/p/mjpg-streamer/code/ mjpg-streamer
+  fi
+
+  if [ -d ~/mjpg-streamer/mjpg-streamer ]
+  then
+    cd ~/mjpg-streamer/mjpg-streamer
+    make USE_LIBV4L2=true
+    sudo make install
+  fi
+
+  if [ ! -f /BA/mjpgStreamerTemp ]
+  then
+    mv /BA/mjpgStreamerTemp /BA/Crops/
+    cd /BA/Crops
+    mv mjpgStreamerTemp rc.local
+    echo -e "$Yellow Mjpg-streamer successfully installed $OFF"
+  fi
+fi
+
+
+############################# Make all #############################
 echo -e "$Cyan Make all... $OFF"
 if [ -d /BA/CheckMotion/Release ]
 then

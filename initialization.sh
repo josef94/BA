@@ -184,10 +184,10 @@ then
     sudo make install
   fi
 
-  if [ ! -f /BA/mjpgStreamerTemp ]
+  if [ -f /BA/mjpgStreamerTemp ]
   then
-    mv /BA/mjpgStreamerTemp /BA/Crops/
-    cd /BA/Crops
+    mv /BA/mjpgStreamerTemp /etc
+    cd /etc
     mv mjpgStreamerTemp rc.local
     echo -e "$Yellow Mjpg-streamer successfully installed $OFF"
   fi

@@ -92,30 +92,30 @@ then
   echo -e "$Yellow OpenCV $OFF"
   if [ ! -d ~/opencv ]
   then
-  cd ~/
-  git clone https://github.com/josef94/opencv.git
+    cd ~/
+    git clone https://github.com/josef94/opencv.git
   fi
 
   if [ -d ~/opencv/build ]
   then
     if [ ! -d ~/opencv/build/CMakeFiles ]
     then
-    cd ~/opencv/build
-    chmod +x buildOpenCV
-    ./buildOpenCV
+      cd ~/opencv/build
+      chmod +x buildOpenCV
+      ./buildOpenCV
     fi
 
     if [[ -d ~/opencv/build/CMakeFiles && ! -f ~/opencv/build/Makefile ]]
     then
-    cd ~/opencv/build
-    make
+      cd ~/opencv/build
+      make
     fi
 
     if [ -f ~/opencv/build/Makefile ]
     then
-    cd ~/opencv/build
-    sudo make install
-    echo -e "$Yellow OpenCV successfully installed $OFF"
+      cd ~/opencv/build
+      sudo make install
+      echo -e "$Yellow OpenCV successfully installed $OFF"
     fi
   fi
 fi
@@ -134,6 +134,25 @@ if ! dpkg --get-selections | grep -q apache2
 then
   echo -e "$Yellow apache2 $OFF"
   sudo apt-get -y -q install apache2
+fi
+
+if ! dpkg --get-selections | grep -q php5
+then
+  echo -e "$Yellow php5 $OFF"
+  sudo apt-get -y -q install php5
+fi
+
+if ! dpkg --get-selections | grep -q libapache2-mod-php5
+then
+  echo -e "$Yellow libapache2-mod-php5 $OFF"
+  sudo apt-get -y -q install libapache2-mod-php5
+fi
+
+if dpkg --get-selections | grep -q apache2
+then
+  echo -e "$Yellow restarting apache2 $OFF"
+  sudo systemctl daemon-reload
+  sudo /etc/init.d/apache2 restart 2>&1 >/dev/null
 fi
 
 ############################# mjpg-streamer #############################
@@ -184,12 +203,33 @@ then
     sudo make install
   fi
 
-  if [ -f /BA/mjpgStreamerTemp ]
+  if [ -d /BA/Temp ]
   then
-    mv /BA/mjpgStreamerTemp /etc
-    cd /etc
-    mv mjpgStreamerTemp rc.local
-    echo -e "$Yellow Mjpg-streamer successfully installed $OFF"
+    if [ -f /BA/Temp/rc.local ]
+    then
+      mv /BA/Temp/rc.local /etc
+    fi
+
+    if [ -f /BA/Temp/index.php ]
+    then
+      mv /BA/Temp/index.php /var/www/html
+      mv /var/www/html/index.html /var/www/html/index2.html
+    fi
+
+    if [ -f /BA/Temp/switch.sh ]
+      mv /BA/Temp/switch.sh /var/www/html
+      chmod +x /var/www/html/switch.sh
+    fi
+
+    if [ -d /BA/Temp ]
+    then
+      rmdir /BA/Temp
+
+      if [ ! -d /BA/Temp ]
+      then
+        echo -e "$Yellow Mjpg-streamer successfully installed $OFF"
+      fi
+    fi
   fi
 fi
 
@@ -201,13 +241,13 @@ then
   cd /BA/CheckMotion/Release
   if [ ! -d /BA/CheckMotion/Release/CMakeFiles ]
   then
-  cmake .
+    cmake .
   fi
 
   if [ -d /BA/CheckMotion/Release/CMakeFiles ]
   then
-  make clean
-  make all
+    make clean
+    make all
   fi
 fi
 
@@ -216,26 +256,32 @@ then
   cd /BA/VehicleCount/Release
   if [ ! -d /BA/VehicleCount/Release/CMakeFiles ]
   then
-  cmake .
+    cmake .
   fi
 
   if [ -d /BA/VehicleCount/Release/CMakeFiles ]
   then
-  make clean
-  make all
+    make clean
+    make all
   fi
 fi
 
 ############################# chmod  #############################
 echo -e "$Cyan chmod... $OFF"
 if [ -f /BA/MakeVideo/makeVideo.sh ]
-  then
+then
   chmod +x /BA/MakeVideo/makeVideo.sh
-  fi
+fi
 
 if [ -f /BA/Handler/Release/handler.sh ]
-  then
+then
   chmod +x /BA/Handler/Release/handler.sh
-  fi
+fi
+
+if [ -f /BA/Handler/Release/settings.sh ]
+then
+  chmod +x /BA/Handler/Release/settings.sh
+fi
+
 
 echo -e "$Green Finished $OFF"

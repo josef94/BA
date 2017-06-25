@@ -10,8 +10,8 @@
 using namespace cv;
 using namespace std;
 
-string framePath = "../../Frames/";
-string videoPath = "../../Videos/";
+string framePath = "/BA/Frames/";
+string videoPath = "/BA/Videos/";
 string video;
 string frames;
 

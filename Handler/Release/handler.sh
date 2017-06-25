@@ -1,4 +1,4 @@
-#Handler
+#!/bin/bash
 
 # Reset
 OFF='\033[0m'       # Text Reset
@@ -18,71 +18,79 @@ duration=600	 	  #Dauer in Secunden
 end=$((SECONDS + $duration))
 
 #für Zeitsteuerung
-startTime="9080000"
+startTime="9002500"
 endTime="9200000"
 isRunningVideo=false;
 
-echo -e "$Blue Test avconv is running $OFF"
-
 while [ 1 ]
 do
-if [[ ! "$((`date +"9%H%M%S"`))" < "$startTime" && ! "$((`date +"9%H%M%S"`))" > "$endTime" ]]
-then
-	isRunningVideo=true;
-	if [ `pidof avconv` > "0" ]
-	then
-		echo -e "$Yellow Video is running $OFF"
-	else
-		echo -e "$Cyan Start MakeVideo: .. $OFF"
-		./../../MakeVideo/makeVideo.sh
-		sleep 5
-	fi
-else
-	echo -e "$Red NOT ready for MakeVideo $OFF"
-	isRunningVideo=false;
-fi
-	if [[ `find ../../Videos/* -maxdepth 0 -type f | wc -l` -gt "1" || ( "$isRunningVideo" = false && `pidof avconv` < "1" ) ]]
-	then
-	      if [ `find ../../Videos -prune -empty` ]
-      	      then
-                	echo -e "$Red No Videos left $OFF"
-  	      else
-        	        firstVideo=$(ls ../../Videos/ -tr | head -n 1)
-			firstPath=${firstVideo:0:19}
-	                     if [ `pidof CheckMotion` > "0" ]
-           		     then
-				echo -e "$Yellow CheckMotion still running $OFF"
-			     else
-				echo -e "$Cyan Start CheckMotion: $firstVideo $OFF"
-				mkdir ../../Frames/$firstPath
-			   	./../../CheckMotion/Release/CheckMotion $firstVideo $firstPath &
-				sleep 2
-			    fi
-	       fi
-	else
-		echo -e "$Red NOT ready for CheckMotion $OFF"
-	fi
-	if [[ `find ../../Frames/* -maxdepth 0 -type d | wc -l` -gt "1" || ( "$isRunningVideo" = false && `pidof CheckMotion` < "1" ) ]]
-	then
-		if [ `find ../../Frames -prune -empty` ]
-              	then
-                        echo -e "$Red No Videos left $OFF"
-              	else
-			if [ `pidof VehicleCount` > "0" ]
-			then
-				echo -e "$Yellow VehicleCount is running $OFF"
-			else
-				echo -e "$Cyan VehicleCount started: $folderPath $OFF"
-				folderPath=$(ls ../../Frames/ -tr | head -n 1)
-               			./../../VehicleCount/Release/VehicleCount $folderPath &
-			fi
-		fi
-	else
-		echo -e "$Red NOT ready for VehicleCount $OFF"
-	fi
-	echo -e "$Purple ------------------------------------------- -__- $OFF"
-	sleep 3
- 
-done
+  if [ -d /tmp/videoStart ]
+  then
+    if [ `pidof mjpg_streamer` > "0" ]
+    then
+      pkill mjpg_streamer
+      sleep 5
+    fi
 
+    if [[ ! "$((`date +"9%H%M%S"`))" < "$startTime" && ! "$((`date +"9%H%M%S"`))" > "$endTime" ]]
+    then
+      isRunningVideo=true;
+      if [ `pidof avconv` > "0" ]
+      then
+        echo -e "$Yellow Video is running $OFF"
+      else
+        echo -e "$Cyan Start MakeVideo: .. $OFF"
+        /BA/MakeVideo/./makeVideo.sh
+        sleep 5
+      fi
+
+    else
+      echo -e "$Red NOT ready for MakeVideo $OFF"
+      isRunningVideo=false;
+    fi
+
+    if [[ `find /BA/Videos/* -maxdepth 0 -type f | wc -l` -gt "1" || ( "$isRunningVideo" = false && `pidof avconv` < "1" ) ]]
+    then
+      if [ `find /BA/Videos -prune -empty` ]
+      then
+        echo -e "$Red No Videos left $OFF"
+      else
+        firstVideo=$(ls /BA/Videos/ -tr | head -n 1)
+        firstPath=${firstVideo:0:19}
+        if [ `pidof CheckMotion` > "0" ]
+        then
+          echo -e "$Yellow CheckMotion running $OFF"
+        else
+          echo -e "$Cyan Start CheckMotion: $firstVideo $OFF"
+          mkdir /BA/Frames/$firstPath
+	  /BA/CheckMotion/Release/./CheckMotion $firstVideo $firstPath &
+	  sleep 2
+        fi
+      fi
+    else
+      echo -e "$Red NOT ready for CheckMotion $OFF"
+    fi
+
+    if [[ `find /BA/Frames/* -maxdepth 0 -type d | wc -l` -gt "1" || ( "$isRunningVideo" = false && `pidof CheckMotion` < "1" ) ]]
+    then
+      if [ `find /BA/Frames -prune -empty` ]
+      then
+        echo -e "$Red No Videos left $OFF"
+      else
+        if [ `pidof VehicleCount` > "0" ]
+        then
+          echo -e "$Yellow VehicleCount is running $OFF"
+        else
+          echo -e "$Cyan VehicleCount started: $folderPath $OFF"
+	  folderPath=$(ls /BA/Frames/ -tr | head -n 1)
+          /BA/VehicleCount/Release/./VehicleCount $folderPath &
+        fi
+      fi
+    else
+      echo -e "$Red NOT ready for VehicleCount $OFF"
+    fi
+    echo -e "$Purple ------------------------------------------- -__- $OFF"
+  fi
+  sleep 3
+done
 exit 0

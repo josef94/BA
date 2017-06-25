@@ -18,8 +18,8 @@ using namespace cv;
 //string folder = "18.06.2017_22.54.51";
 //string path = "../../Frames/" + folder + "/";
 string pictureName = "crop%03d.tif";
-string pathSaveROIPicture = "../../Crops/";
-char fileName[256] = "../../FeatureVec.csv";
+string pathSaveROIPicture = "/BA/Crops/";
+char fileName[256] = "/BA/FeatureVec.csv";
 string folder;
 
 vector<String> filenames;
@@ -57,7 +57,7 @@ int main(int argc, const char* argv[]) {
 	Point crossingLine[2];
 	int countLinePosition;
 	folder = argv[1];
-	string path = "../../Frames/" + folder  + "/";
+	string path = "/BA/Frames/" + folder  + "/";
 
 	//// PROGRAM START ////
 	calculateDirectionCount(fileName);

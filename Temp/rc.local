@@ -11,9 +11,12 @@
 #
 # By default this script does nothing.
 
+echo before-handler
+  /BA/Handler/Release/./handler.sh &
+echo after-handler
+
 echo before-mjpg
-  export LD_LIBRARY_PATH=/usr/local/lib
-  mjpg_streamer -i "input_uvc.so -d /dev/video0" -o "output_http.so -p 8080 -w /usr/local/www"
+  /BA/Handler/Release/./settings.sh &
 echo after-mjpg
 
 exit 0

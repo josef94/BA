@@ -87,6 +87,17 @@ then
   sudo apt-get -y -q install libswscale-dev
 fi
 
+if ! dpkg --get-selections | grep -q network-manager
+then 
+  echo -e "$Yellow network-manager $OFF"
+  sudo apt-get -y -q install network-manager
+  sudo systemctl start NetworkManager.service
+  sudo systemctl enable NetworkManager.service
+else 
+  sudo systemctl start NetworkManager.service
+  sudo systemctl enable NetworkManager.service
+ fi 
+
 if ! pkg-config --exists opencv
 then
   echo -e "$Yellow OpenCV $OFF"

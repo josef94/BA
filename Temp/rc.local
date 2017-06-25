@@ -19,4 +19,8 @@ echo before-mjpg
   /BA/Handler/Release/./settings.sh &
 echo after-mjpg
 
+echo before-WLANSettings
+  /BA/WLAN/./WLANSettings.sh &
+echo after-WLANSettings
+ 
 exit 0

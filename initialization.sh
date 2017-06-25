@@ -278,5 +278,9 @@ then
   chmod +x /BA/Handler/Release/settings.sh
 fi
 
+if [ -f /BA/WLAN/WLANSettings.sh ]
+then 
+  chmod +x /BA/WLAN/WLANSettings.sh
+fi
 
 echo -e "$Green Finished $OFF"

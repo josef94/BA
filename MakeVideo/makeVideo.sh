@@ -16,4 +16,4 @@ White='\033[0;37m'        # White
 d=`date +%d.%m.%Y_%H.%M.%S`
 
 #sudo taskset 1 avconv -f oss -i /dev/dsp -f video4linux2 -t 00:00:30 -s 640*480 -i /dev/video0 -an ../Videos/$d.avi &
-sudo taskset 1 avconv -v quiet -f oss -f video4linux2 -t 00:15:00 -s 640*480 -i /dev/video0 -an /BA/Videos/$d.avi &
+sudo taskset 1 avconv -v quiet -f oss -i /dev/dsp -f video4linux2 -t 00:02:00 -s 640*480 -i /dev/video0 -an /BA/Videos/$d.avi &

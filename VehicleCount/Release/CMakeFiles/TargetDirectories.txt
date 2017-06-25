@@ -1,3 +1,0 @@
-/BA/VehicleCount/Release/CMakeFiles/edit_cache.dir
-/BA/VehicleCount/Release/CMakeFiles/rebuild_cache.dir
-/BA/VehicleCount/Release/CMakeFiles/VehicleCount.dir

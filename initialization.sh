@@ -136,10 +136,16 @@ then
   sudo apt-get -y -q install apache2
 fi
 
-if ! dpkg --get-selections | grep -q libapache2-mod-php7.0
+if ! dpkg --get-selections | grep -q php5
+then
+  echo -e "$Yellow php5 $OFF"
+  sudo apt-get -y -q install php5
+fi
+
+if ! dpkg --get-selections | grep -q libapache2-mod-php5
 then
   echo -e "$Yellow libapache2-mod-php5 $OFF"
-  sudo apt-get -y -q install libapache2-mod-php7.0 
+  sudo apt-get -y -q install libapache2-mod-php5
 fi
 
 if dpkg --get-selections | grep -q apache2

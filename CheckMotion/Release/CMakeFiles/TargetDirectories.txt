@@ -1,3 +1,0 @@
-/BA/CheckMotion/Release/CMakeFiles/edit_cache.dir
-/BA/CheckMotion/Release/CMakeFiles/rebuild_cache.dir
-/BA/CheckMotion/Release/CMakeFiles/CheckMotion.dir

@@ -217,7 +217,8 @@ then
     fi
 
     if [ -f /BA/Temp/switch.sh ]
-      mv /BA/Temp/switch.sh /var/www/html
+    then
+     mv /BA/Temp/switch.sh /var/www/html
       chmod +x /var/www/html/switch.sh
     fi
 

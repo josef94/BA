@@ -200,7 +200,7 @@ void deleteDir(string deletePath){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void copyDir(string deletePath){
-	string rem = "mv -r " + deletePath + " /var/www/html/Frames";
+	string rem = "mv " + deletePath + " /var/www/html/Frames";
         system(rem.c_str());
         cout << "Finish VehicleCount" << endl;
 }

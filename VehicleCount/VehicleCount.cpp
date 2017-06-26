@@ -186,7 +186,7 @@ int main(int argc, const char* argv[]) {
 		}
 
 	}
-	copyDir(path)
+	copyDir(path);
 	//deleteDir(path);
 	return(0);
 }

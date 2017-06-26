@@ -18,6 +18,7 @@
     <br>
     <br>
     <a href="?run=true">Videoaufnahme starten</a>
+    <a href="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/Frames"> Go to Download Folder</a>
   <body>
 
   <?php

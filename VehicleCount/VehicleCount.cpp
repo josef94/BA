@@ -36,6 +36,7 @@ double fps;
 
 // function prototypes ////////////////////////////////////////////////////////////////////////////
 void deleteDir(string deletePath);
+void copyDir(string deletePath);
 void matchCurrentFrameBlobsToExistingBlobs(vector<Blob> &existingBlobs, vector<Blob> &currentFrameBlobs);
 void addBlobToExistingBlobs(Blob &currentFrameBlob, vector<Blob> &existingBlobs, int &intIndex);
 void addNewBlob(Blob &currentFrameBlob, vector<Blob> &existingBlobs);
@@ -185,13 +186,21 @@ int main(int argc, const char* argv[]) {
 		}
 
 	}
-	deleteDir(path);
+	copyDir(path)
+	//deleteDir(path);
 	return(0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 void deleteDir(string deletePath){
 	string rem = "rm -r " + deletePath;
+	system(rem.c_str());
+        cout << "Finish VehicleCount" << endl;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+void copyDir(string deletePath){
+	string rem = "cp -r " + deletePath + " /BA/Temp";
         system(rem.c_str());
         cout << "Finish VehicleCount" << endl;
 }

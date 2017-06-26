@@ -37,6 +37,11 @@ then
   mkdir /BA/Videos
 fi
 
+if [ ! -d /var/www/html/Frames ]
+then
+  mkdir /var/www/html/Frames
+fi
+
 ############################# OpenCV  #############################
 echo -e "$Cyan Installing OpenCV... $OFF"
 if ! dpkg --get-selections | grep -q build-essential

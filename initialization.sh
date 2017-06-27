@@ -92,17 +92,6 @@ then
   sudo apt-get -y -q install libswscale-dev
 fi
 
-if ! dpkg --get-selections | grep -q network-manager
-then 
-  echo -e "$Yellow network-manager $OFF"
-  sudo apt-get -y -q install network-manager
-  sudo systemctl start NetworkManager.service
-  sudo systemctl enable NetworkManager.service
-else 
-  sudo systemctl start NetworkManager.service
-  sudo systemctl enable NetworkManager.service
- fi 
-
 if ! pkg-config --exists opencv
 then
   echo -e "$Yellow OpenCV $OFF"
@@ -135,6 +124,23 @@ then
     fi
   fi
 fi
+############################# network-manager #############################
+if ! dkpg --get-selections | grep -q zip
+then
+  echo -e "$Yellow zip $OFF"
+  sudo apt-get install zip
+fi
+
+if ! dpkg --get-selections | grep -q network-manager
+then 
+  echo -e "$Yellow network-manager $OFF"
+  sudo apt-get -y -q install network-manager
+  sudo systemctl start NetworkManager.service
+  sudo systemctl enable NetworkManager.service
+else 
+  sudo systemctl start NetworkManager.service
+  sudo systemctl enable NetworkManager.service
+ fi 
 
 ############################# avconv #############################
 echo -e "$Cyan Installing Avconv... $OFF"
@@ -154,7 +160,7 @@ fi
 
 if ! dpkg --get-selections | grep -q libapache2-mod-php7.0
 then
-  echo -e "$Yellow libapache2-mod-php5 $OFF"
+  echo -e "$Yellow libapache2-mod-php7 $OFF"
   sudo apt-get -y -q install libapache2-mod-php7.0 
 fi
 

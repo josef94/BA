@@ -17,9 +17,10 @@ White='\033[0;37m'        # White
 duration=600	 	  #Dauer in Secunden
 end=$((SECONDS + $duration))
 
-#für Zeitsteuerung
-startTime="9002500"
-endTime="9200000"
+#für Zeitsteuerung in UTC!!
+# 03:00:00 - 19:00:00 UTC -> 05:00:00 - 21:00:00 Local Time
+startTime="9030000"
+endTime="9190000"
 isRunningVideo=false;
 
 while [ 1 ]

@@ -263,6 +263,12 @@ then
     chmod +x /var/www/html/generateCrops.sh
   fi
   
+  if [ -f /BA/Temp/deleteFrames.sh ]
+  then
+   mv /BA/Temp/deleteFrames.sh /var/www/html
+    chmod +x /var/www/html/deleteFrames.sh
+  fi
+  
   if [ -f /BA/Temp/generateFeatureVec.sh ]
   then
    mv /BA/Temp/generateFeatureVec.sh /var/www/html

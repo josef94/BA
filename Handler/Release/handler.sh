@@ -111,6 +111,13 @@ do
     rmdir /tmp/generateFeatureVec
     cp /BA/FeatureVec.csv /var/www/html/Downloads
   fi
+  
+  if [ -d /tmp/deleteFrames ]
+  then
+    rmdir /tmp/deleteFrames
+	rm -r /var/www/html/Downloads/Frames
+	mkdir /var/www/html/Downloads/Frames
+  fi
 
   sleep 2
 done

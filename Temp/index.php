@@ -19,7 +19,6 @@
 <head><title>Fast and Curious</title></head>
   <body>
     <h1>Fast and Curious</h1>
-    <br>
     <img src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream" />
     <br>
     <br>
@@ -28,6 +27,7 @@
     <a href="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/Downloads"> Go to Download Folder</a>
     <a href="?crops=true">Crops generieren</a>
     <a href="?feature=true">FeatureVektor generieren</a>
+	<a href="?delete=true">Frame Ordner loeschen</a>
 
     <p> Time:  <b> <?php echo (date("Y-m-d h:i:sa",$t)) ?></b>Uhr </p>
     <p> Temperatur der CPU: <b> <?php echo $temp ?></b> GradC </p>
@@ -50,6 +50,10 @@
     }
     if ($_GET['feature']) {
       exec("/var/www/html/generateFeatureVec.sh");
+      header("location: index.php");
+    }
+	if ($_GET['delete']) {
+      exec("/var/www/html/deleteFrames.sh");
       header("location: index.php");
     }
   ?>

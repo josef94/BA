@@ -232,6 +232,10 @@ then
   if [ -f /BA/Temp/index.php ]
   then
     mv /BA/Temp/index.php /var/www/html
+  fi
+  
+  if [ -f /var/www/html/index.html ]
+  then
     mv /var/www/html/index.html /var/www/html/index2.html
   fi
 

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-rkdir /tmp/videoStart
+rmdir /tmp/videoStart
 

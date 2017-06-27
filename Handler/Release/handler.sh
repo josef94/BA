@@ -64,7 +64,7 @@ do
         else
           echo -e "$Cyan Start CheckMotion: $firstVideo $OFF"
           mkdir /BA/Frames/$firstPath
-	  /BA/CheckMotion/Release/./CheckMotion $firstVideo $firstPath &
+	  sudo taskset 6 /BA/CheckMotion/Release/./CheckMotion $firstVideo $firstPath &
 	  sleep 2
         fi
       fi
@@ -83,8 +83,8 @@ do
           echo -e "$Yellow VehicleCount is running $OFF"
         else
           echo -e "$Cyan VehicleCount started: $folderPath $OFF"
-	  folderPath=$(ls /BA/Frames/ -tr | head -n 1)
-          /BA/VehicleCount/Release/./VehicleCount $folderPath &
+		  folderPath=$(ls /BA/Frames/ -tr | head -n 1)
+          sudo taskset 8 /BA/VehicleCount/Release/./VehicleCount $folderPath &
         fi
       fi
     else

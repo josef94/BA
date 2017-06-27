@@ -218,34 +218,36 @@ then
     make USE_LIBV4L2=true
     sudo make install
   fi
+fi
+
+############################# Temp #############################
+echo -e "$Cyan Temp moves... $OFF"
+if [ -d /BA/Temp ]
+then
+  if [ -f /BA/Temp/rc.local ]
+  then
+    mv /BA/Temp/rc.local /etc
+  fi
+
+  if [ -f /BA/Temp/index.php ]
+  then
+    mv /BA/Temp/index.php /var/www/html
+    mv /var/www/html/index.html /var/www/html/index2.html
+  fi
+
+  if [ -f /BA/Temp/switch.sh ]
+  then
+   mv /BA/Temp/switch.sh /var/www/html
+    chmod +x /var/www/html/switch.sh
+  fi
 
   if [ -d /BA/Temp ]
   then
-    if [ -f /BA/Temp/rc.local ]
-    then
-      mv /BA/Temp/rc.local /etc
-    fi
+    rmdir /BA/Temp
 
-    if [ -f /BA/Temp/index.php ]
+	if [ ! -d /BA/Temp ]
     then
-      mv /BA/Temp/index.php /var/www/html
-      mv /var/www/html/index.html /var/www/html/index2.html
-    fi
-
-    if [ -f /BA/Temp/switch.sh ]
-    then
-     mv /BA/Temp/switch.sh /var/www/html
-      chmod +x /var/www/html/switch.sh
-    fi
-
-    if [ -d /BA/Temp ]
-    then
-      rmdir /BA/Temp
-
-      if [ ! -d /BA/Temp ]
-      then
-        echo -e "$Yellow Mjpg-streamer successfully installed $OFF"
-      fi
+      echo -e "$Yellow Mjpg-streamer successfully installed $OFF"
     fi
   fi
 fi

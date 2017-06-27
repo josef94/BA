@@ -13,19 +13,29 @@
  <head><title>Fast and Curious</title></head>
   <body>
     <h1>Fast and Curious</h1>
-    <h3>Bitte richten Sie die Kamera aus und starten Sie die Aufnahme mit dem Button </h3>
+    <br>
     <img src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream" />
     <br>
     <br>
     <a href="?run=true">Videoaufnahme starten</a>
+	<a href="?stream=true">Stream starten</a>
     <a href="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/Frames"> Go to Download Folder</a>
   <body>
 
   <?php
     if ($_GET['run']) {
       # This code will run if ?run=true is set.
-      exec("/var/www/html/switch.sh");
+      exec("/var/www/html/startVideo.sh");
     }
   ?>
+  
+  <?php
+    if ($_GET['stream']) {
+      # This code will run if ?run=true is set.
+      exec("/var/www/html/startStream.sh");
+	  sleep(10);
+    }
+  ?>
+  
 
 </html>

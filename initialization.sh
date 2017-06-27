@@ -239,10 +239,16 @@ then
     mv /var/www/html/index.html /var/www/html/index2.html
   fi
 
-  if [ -f /BA/Temp/switch.sh ]
+  if [ -f /BA/Temp/startStream.sh ]
   then
-   mv /BA/Temp/switch.sh /var/www/html
-    chmod +x /var/www/html/switch.sh
+   mv /BA/Temp/startStream.sh /var/www/html
+    chmod +x /var/www/html/startStream.sh
+  fi
+  
+    if [ -f /BA/Temp/startVideo.sh ]
+  then
+   mv /BA/Temp/startVideo.sh /var/www/html
+    chmod +x /var/www/html/startVideo.sh
   fi
 
   if [ -d /BA/Temp ]

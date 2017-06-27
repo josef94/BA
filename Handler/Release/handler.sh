@@ -91,6 +91,14 @@ do
       echo -e "$Red NOT ready for VehicleCount $OFF"
     fi
     echo -e "$Purple ------------------------------------------- -__- $OFF"
+ else
+    if [ `pidof avconv` > "0" ]
+    then
+      pkill avconv
+      sleep 5
+    fi
+    export LD_LIBRARY_PATH=/usr/local/lib
+    mjpg_streamer -i "input_uvc.so -d /dev/video0" -o "output_http.so -p 8080 -w /usr/local/www" &
   fi
   sleep 3
 done

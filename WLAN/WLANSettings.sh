@@ -1,4 +1,5 @@
 #Wird zum verbindne in ein WLAN Netzwerk verwendet.
+#WICHTIG: in /etc/network/interfaces den Namen anpassen 
 
 # Reset
 OFF='\033[0m'       # Text Reset

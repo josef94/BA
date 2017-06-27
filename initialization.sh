@@ -128,7 +128,7 @@ fi
 if ! dkpg --get-selections | grep -q zip
 then
   echo -e "$Yellow zip $OFF"
-  sudo apt-get install zip
+  sudo apt-get -y -q install zip
 fi
 
 if ! dpkg --get-selections | grep -q network-manager

@@ -1,4 +1,5 @@
 #!/bin/bash
-
-rmdir /tmp/videoStart
-
+if [ -d /tmp/videoStart]
+then
+  rmdir /tmp/videoStart
+fi

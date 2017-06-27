@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 # Reset
 OFF='\033[0m'       # Text Reset
@@ -91,15 +91,27 @@ do
       echo -e "$Red NOT ready for VehicleCount $OFF"
     fi
     echo -e "$Purple ------------------------------------------- -__- $OFF"
- else
+  else
     if [ `pidof avconv` > "0" ]
     then
-      pkill avconv
-      sleep 5
+     pkill avconv
+     sleep 5
     fi
     export LD_LIBRARY_PATH=/usr/local/lib
     mjpg_streamer -i "input_uvc.so -d /dev/video0" -o "output_http.so -p 8080 -w /usr/local/www" &
   fi
-  sleep 3
+  if [ -d /tmp/zipCrops ]
+  then
+    rmdir /tmp/zipCrops
+    zip -r /var/www/html/Downloads/Crops.zip /BA/Crops
+  fi
+
+  if [ -d /tmp/generateFeatureVec ]
+  then
+    rmdir /tmp/generateFeatureVec
+    cp /BA/FeatureVec.csv /var/www/html/Downloads
+  fi
+
+  sleep 2
 done
 exit 0

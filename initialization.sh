@@ -37,9 +37,14 @@ then
   mkdir /BA/Videos
 fi
 
-if [ ! -d /var/www/html/Frames ]
+if [ ! -d /var/www/html/Downloads ]
 then
-  mkdir /var/www/html/Frames
+  mkdir /var/www/html/Downloads
+fi
+
+if [ ! -d /var/www/html/Downloads/Frames ]
+then
+  mkdir /var/www/html/Downloads/Frames
 fi
 
 ############################# OpenCV  #############################
@@ -237,7 +242,7 @@ then
   
   if [ -f /var/www/html/index.html ]
   then
-    mv /var/www/html/index.html /var/www/html/index2.html
+    rm /var/www/html/index.html
   fi
 
   if [ -f /BA/Temp/startStream.sh ]
@@ -246,7 +251,7 @@ then
     chmod +x /var/www/html/startStream.sh
   fi
   
-    if [ -f /BA/Temp/startVideo.sh ]
+  if [ -f /BA/Temp/startVideo.sh ]
   then
    mv /BA/Temp/startVideo.sh /var/www/html
     chmod +x /var/www/html/startVideo.sh

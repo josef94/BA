@@ -1,4 +1,5 @@
 #!/bin/bash
-
-mkdir /tmp/videoStart
-
+if [ ! -d /tmp/videoStart]
+then
+  mkdir /tmp/videoStart
+fi

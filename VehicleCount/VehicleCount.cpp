@@ -35,8 +35,8 @@ int countSaveWeb = 29;
 double fps;
 
 // function prototypes ////////////////////////////////////////////////////////////////////////////
-void deleteDir(string deletePath, string folder);
-void copyDir(string deletePath);
+void deleteDir(string deletePath);
+void copyDir(string deletePath, string folder);
 void matchCurrentFrameBlobsToExistingBlobs(vector<Blob> &existingBlobs, vector<Blob> &currentFrameBlobs);
 void addBlobToExistingBlobs(Blob &currentFrameBlob, vector<Blob> &existingBlobs, int &intIndex);
 void addNewBlob(Blob &currentFrameBlob, vector<Blob> &existingBlobs);

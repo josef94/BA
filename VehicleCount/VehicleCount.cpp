@@ -200,7 +200,7 @@ void deleteDir(string deletePath){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void copyDir(string deletePath, string folder){
-	string rem = "zip -r /var/www/html/Downloads/Frames" + folder +".zip " + deletePath;
+	string rem = "zip -r /var/www/html/Downloads/Frames/" + folder +".zip " + deletePath;
         system(rem.c_str());
 	deleteDir(deletePath);
         cout << "Finish VehicleCount" << endl;

@@ -256,6 +256,18 @@ then
    mv /BA/Temp/startVideo.sh /var/www/html
     chmod +x /var/www/html/startVideo.sh
   fi
+  
+  if [ -f /BA/Temp/generateCrops.sh ]
+  then
+   mv /BA/Temp/generateCrops.sh /var/www/html
+    chmod +x /var/www/html/generateCrops.sh
+  fi
+  
+  if [ -f /BA/Temp/generateFeatureVec.sh ]
+  then
+   mv /BA/Temp/generateFeatureVec.sh /var/www/html
+    chmod +x /var/www/html/generateFeatureVec.sh
+  fi
 
   if [ -d /BA/Temp ]
   then

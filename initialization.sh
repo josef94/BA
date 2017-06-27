@@ -217,6 +217,7 @@ then
     cd ~/mjpg-streamer/mjpg-streamer
     make USE_LIBV4L2=true
     sudo make install
+    echo -e "$Yellow Mjpg-streamer successfully installed $OFF"
   fi
 fi
 
@@ -254,11 +255,6 @@ then
   if [ -d /BA/Temp ]
   then
     rmdir /BA/Temp
-
-	if [ ! -d /BA/Temp ]
-    then
-      echo -e "$Yellow Mjpg-streamer successfully installed $OFF"
-    fi
   fi
 fi
 

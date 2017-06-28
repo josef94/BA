@@ -1,4 +1,4 @@
-#Nach der Installation des Betriebssystemes ausführen
+﻿#Nach der Installation des Betriebssystemes ausführen
 
 # Reset
 OFF='\033[0m'       # Text Reset
@@ -275,6 +275,24 @@ then
     chmod +x /var/www/html/generateFeatureVec.sh
   fi
 
+  if [ -f /BA/Temp/temperatures.csv ]
+  then
+   mv /BA/Temp/temperatures.csv /var/www/html
+  fi
+
+  if [ -f /BA/Temp/temperature.php ]
+  then
+    mv /BA/Temp/temperature.php /var/www/html
+  fi
+
+  if [ -d /BA/Temp ]
+  then 
+    wget http://dygraphs.com/2.0.0/dygraph.js
+    mv dygraph.js /var/www/html
+    wget http://dygraphs.com/2.0.0/dygraph.css
+    mv dygraph.css /var/www/html
+  fi
+
   if [ -d /BA/Temp ]
   then
     rmdir /BA/Temp
@@ -329,6 +347,11 @@ fi
 if [ -f /BA/Handler/Release/settings.sh ]
 then
   chmod +x /BA/Handler/Release/settings.sh
+fi
+
+if [ -f /BA/Handler/Release/temperature.sh ]
+then
+  chmod +x /BA/Handler/Release/temperature.sh
 fi
 
 if [ -f /BA/WLAN/WLANSettings.sh ]

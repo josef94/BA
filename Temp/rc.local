@@ -22,5 +22,9 @@ echo after-mjpg
 echo before-WLANSettings
   /BA/WLAN/./WLANSettings.sh &
 echo after-WLANSettings
+
+echo before-Temperature
+  /BA/Handler/Release/./temperature.sh &
+echo after-Temperature
  
 exit 0
